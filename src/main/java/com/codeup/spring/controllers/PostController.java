@@ -13,19 +13,24 @@ public class PostController {
 //    Inside the method that shows all the posts, create a new array list and add two post objects to it, then pass that list to the view.
     @GetMapping("/posts")
     @ResponseBody
-    public String index() {
-       List<Post> postList = new ArrayList<>();
-//postList.add(getPost(String title, String body));
-        return "/index";
+    public String index(Model model) {
+        List<Post> posts = new ArrayList<>();
+        posts.add(new Post("Post 1", "Info 1."));
+        posts.add(new Post("Post 2", "Info 2."));
+        posts.add(new Post("Post 3", "Info 3."));
+
+        model.addAttribute("posts", posts);
+        return "posts/index";
     }
 
 //Inside the method that shows an individual post, create a new post object and pass it to the view.
     @GetMapping("/posts/{id}")
     @ResponseBody
-    public String getPost(@PathVariable long id, Model model) {
-        Post post = new Post();
-        model.addAttribute("id",id);
-        return "/show";
+    public String show(@PathVariable long id, Model model) {
+        Post post = new Post ("Post 1 " + id, "Information!! " + id +"." );
+
+        model.addAttribute("post", post);
+        return "posts/show";
     }
 
     @GetMapping("/posts/create")

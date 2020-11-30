@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"><head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
     <meta charset="UTF-8">
     <title>Roll Dice</title>
 </head>
@@ -17,6 +18,17 @@
     <li><a href="/roll-dice/5">5</a></li>
     <li><a href="/roll-dice/6">6</a></li>
 </ul>
+<!--<div th:if="${number}">-->
+<!--    <span th:text="${number}"></span>><br>-->
+<!--    The rolled number is <span th:text="${actual}"></span>-->
+<!--</div>-->
+<!--<h3 th:if="${number == actual}">-->
+<!--    You guessed correctly!-->
+<!--</h3> -->
+
+<!--<h3 th:if="${number} == ${actual}">-->
+<!--    Guess is incorrect.-->
+<!--</h3>-->
 
 </body>
 <footer th:replace="partials/partials :: footer"></footer>

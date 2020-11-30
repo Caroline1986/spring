@@ -35,4 +35,9 @@ public class RollDiceController {
         model.addAttribute("response", response);
         return ("/roll-outcome");
     }
+
+//    int randomNum = ThreadLocalRandom.current().nextInt(1, 6 + 1);
+//    model.addAttribute("randomNumber", randomNum);
+//    model.addAttribute("myGuess", guess);
+//    model.addAttribyt("isCorrectGuess", guess == randomNum);
 }

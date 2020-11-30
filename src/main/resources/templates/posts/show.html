@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header th:replace="partials/partials :: header"></header>
+<nav th:include="partials/navbar :: my-navbar"></nav>
+
+<main>
+    <div class="card">
+        <h2 th:text="${post.title}">
+            <p th:text="${post.body}"></p>
+        </h2>
+    </div>
+</main>
+</body>
+<footer th:replace="partials/partials :: footer"></footer>
+</html>
