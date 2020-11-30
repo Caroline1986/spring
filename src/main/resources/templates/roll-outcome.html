@@ -4,10 +4,15 @@
     <title>Title</title>
 </head>
 <body>
+<header th:replace="partials/partials :: header"></header>
+
+<nav th:include="partials/partials :: navbar"></nav>
 <h2>The random number was: <span th:text="${actual}"></span></h2>
 
 <h2>You guessed: <span th:text="${number}"></span></h2>
 
 <p><a href="/roll-dice"><span th:text="${response}"></span></a></p>
 </body>
+<footer th:replace="partials/partials :: footer"></footer>
+
 </html>

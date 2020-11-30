@@ -4,6 +4,10 @@
     <title>Roll Dice</title>
 </head>
 <body>
+<header th:replace="partials/partials :: header"></header>
+
+<nav th:include="partials/navbar :: my-navbar"></nav>
+
 <ul>
     <li><a href="/roll-dice/1">1</a></li>
     <li><a href="/roll-dice/2">2</a></li>
@@ -12,5 +16,8 @@
     <li><a href="/roll-dice/5">5</a></li>
     <li><a href="/roll-dice/6">6</a></li>
 </ul>
+
 </body>
+<footer th:replace="partials/partials :: footer"></footer>
+
 </html>
