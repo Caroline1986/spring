@@ -33,3 +33,8 @@ build/
 .vscode/
 
 src/main/resources/application.properties
+
+CREATE DATABASE IF NOT EXISTS bio_adlister_db;
+
+CREATE USER adlister_user@localhost IDENTIFIED BY 'pass';
+GRANT ALL ON adlister_db.* TO adlister_user@localhost;
