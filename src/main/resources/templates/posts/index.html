@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/head :: head('All Posts')">
+    <meta charset="UTF-8">
+</head>
+<body>
+<nav th:replace="partials/navbar :: nav"></nav>
+<header th:replace="partials/header :: header('Welcome to the Codeup Blog!')"></header>
+
+<main class="container">
+    <div class="card" th:each="post : ${posts}">
+        <a th:href="@{|/posts/${post.id}/show|}" ><h3 class="text-center" th:text="${post.title}"></h3></a>
+        <p th:text="${post.body}"></p>
+
+        <a th:href="@{|/posts/${post.id}/edit|}">
+            <button>Edit Post</button>
+        </a>
+        <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST" style="display:inline">
+            <button>Delete Post</button>
+        </form>
+    </div>
+</main>
+<footer th:replace="partials/partials :: footer"></footer>
+<th:block th:include="partials/scripts :: scripts"></th:block>
+</body>
+</html>
