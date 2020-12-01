@@ -1,63 +1,58 @@
 package com.codeup.spring.controllers;
 
-import com.codeup.spring.models.Ad;
-import com.codeup.spring.models.AdRepository;
+import com.codeup.blog.models.Ad;
 import com.codeup.spring.models.Post;
+import com.codeup.spring.repository.AdRepository;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
+@Controller
 public class AdController {
 
     private final AdRepository adDao;
 
-    public AdController(AdRepository adDao) {
+    public AdController(AdRepository adDao){
         this.adDao = adDao;
     }
 
     @GetMapping("/ads")
-    public String index(Model vModel) {
-        vModel.addAttribute("ads", adDao.findAll());
+    public String index(Model viewModel) {
+        viewModel.addAttribute("ads", adDao.findAll());
         return "ads/index";
     }
-//
-//    @GetMapping("/ads")
-//    @ResponseBody
-//    public String index(Model model) {
-//        List<Post> posts = new ArrayList<>();
-//        posts.add(new Post("Post 1", "Info 1."));
-//        posts.add(new Post("Post 2", "Info 2."));
-//        posts.add(new Post("Post 3", "Info 3."));
-//
-//        model.addAttribute("posts", posts);
-//        return "posts/index";
-//    }
+
+    @GetMapping("/ads/search")
+    public String search(@RequestParam(name = "term") String term, Model viewModel){
+        term = "%"+term+"%";
+        List<Ad> dbAds = adDao.findAllByTitleIsLike(term);
+        viewModel.addAttribute("ads", dbAds);
+        return "ads/index";
+    }
 
     @GetMapping("/ads/{id}")
-    @ResponseBody
-    public String show(@PathVariable long id, Model model) {
-        Post post = new Post ("Post 1 " + id, "Information!! " + id +"." );
-
+    public String show(@PathVariable long id, Model model){
+        Post post = new Post("Post " + id, "Some cool stuff " + id + ".");
         model.addAttribute("post", post);
         return "posts/show";
     }
 
     @GetMapping("/ads/create")
-    @ResponseBody
-    public String showCreateForm() {
+    public String showCreateForm(){
         return "ads/new";
     }
 
     @PostMapping("/ads/create")
     @ResponseBody
-    public String createAd(@RequestParam(name = "title") String title,
-                           @RequestParam(name = "description") String desc
-                           ) {
+    public String createAd(
+            @RequestParam(name = "title") String title,
+            @RequestParam(name = "description") String desc
+    ){
         Ad ad = new Ad(title, desc);
         Ad dbAd = adDao.save(ad);
-        return "create an ad with the id: " + dbAd.getId();
+        return "create a new Ad with the id: " + dbAd.getId();
     }
 }
 
