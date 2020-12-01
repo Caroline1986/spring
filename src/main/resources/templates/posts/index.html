@@ -9,7 +9,9 @@
 
 <main class="container">
     <div class="card" th:each="post : ${posts}">
-        <a th:href="@{|/posts/${post.id}/show|}" ><h3 class="text-center" th:text="${post.title}"></h3></a>
+<!--        <a th:href="@{|/posts/${post.id}/show|}" >-->
+            <h3 class="text-center" th:text="${post.title}"></h3>
+<!--        </a>-->
         <p th:text="${post.body}"></p>
 
         <a th:href="@{|/posts/${post.id}/edit|}">
