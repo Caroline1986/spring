@@ -49,8 +49,8 @@ public class PostController {
     }
 
     @GetMapping("/posts/{id}/show")
-    public String postShowbyId(@PathVariable long id){
-        return "posts/show";
+    public String postShowById(@PathVariable long id){
+        return "/posts/show";
     }
 
     @GetMapping("/posts/create")
@@ -61,7 +61,7 @@ public class PostController {
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post post) {
         postDao.save(post);
-        return "posts/show";
+        return "/posts/show";
     }
 
 //    @PostMapping("/posts/create")
