@@ -75,10 +75,16 @@ public class AdController {
     }
 
     @PostMapping("/ads/{id}/delete")
-    public String delteAd(@PathVariable long id){
+    public String deleteAd(@PathVariable long id){
         adDao.deleteById(id);
         return "redirect:/ads";
     }
+
+//    @DeleteMapping("/ads/{id}")
+//    public String deleteAd(@PathVariable long id){
+//        adDao.deleteById(id);
+//        return "redirect:/ads";
+//    }
 }
 
 
