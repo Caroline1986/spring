@@ -11,6 +11,12 @@
     <div class="card" th:each="ad : ${ads}">
         <h3 class="text-center" th:text="${ad.title}"></h3>
         <p th:text="${ad.description}"></p>
+        <a th:href="@{|/ads/${ad.id}/edit|}">
+            <button>Edit Post</button>
+        </a>
+        <form th:action="@{|/ads/${ad.id}/delete|}" th:method="POST" style="display:inline">
+            <button>Delete Post</button>
+        </form>
     </div>
 </main>
 

@@ -12,8 +12,8 @@
     <div class="card">
         <h2 th:text="${post.title}"></h2>
         <p th:text="${post.body}"></p>
-<!--        <div th:each="image: ${post.images}">-->
-<!--            <img th:src="${image.path}" alt="">-->
+        <div th:each="image: ${post.postImages}">
+            <img th:src="${image.path}" alt="">
         </div>
     <p>Created by: <span th:text="${post.owner.username}"></span> <span th:text="${post.owner.email}"></span></p>
     </div>
