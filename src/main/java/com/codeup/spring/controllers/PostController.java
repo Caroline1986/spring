@@ -1,24 +1,23 @@
 package com.codeup.spring.controllers;
 
-import com.codeup.spring.models.Ad;
 import com.codeup.spring.models.Post;
-import com.codeup.spring.repository.AdRepository;
+import com.codeup.spring.models.User;
 import com.codeup.spring.repository.PostRepository;
+import com.codeup.spring.repository.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Controller
 public class PostController {
 
     private final PostRepository postDao;
+    private final UserRepository userDao;
 
-    public PostController(PostRepository adDao) {
+    public PostController(PostRepository adDao, UserRepository userDao) {
         this.postDao = adDao;
+        this.userDao = userDao;
     }
 
     @GetMapping("/posts")
@@ -58,22 +57,23 @@ public class PostController {
         return "posts/create";
     }
 
-    @PostMapping("/posts/create")
-    public String createPost(@ModelAttribute Post post) {
-        postDao.save(post);
-        return "/posts/show";
-    }
-
 //    @PostMapping("/posts/create")
-//    @ResponseBody
-//    public String createAd(
-//            @RequestParam(name = "title") String title,
-//            @RequestParam(name = "body") String body
-//    ){
-//        Post post = new Post(title, body);
-//        Post dbPost = postDao.save(post);
-//        return "create a new Post with the id: " + dbPost.getId();
+//    public String createPost(@ModelAttribute Post post) {
+//        postDao.save(post);
+//        return "/posts/show";
 //    }
+
+    @PostMapping("/posts/create")
+    @ResponseBody
+    public String createAd(
+            @RequestParam(name = "title") String title,
+            @RequestParam(name = "body") String body
+    ){
+        User user = userDao.getOne(1L);
+        Post post = new Post(title, body, user);
+        Post dbPost = postDao.save(post);
+        return "redirect:/posts/ " + dbPost.getId();
+    }
 
     @PostMapping("/posts/{id}/delete")
     public String delete(@PathVariable long id) {

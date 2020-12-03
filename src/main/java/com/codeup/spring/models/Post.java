@@ -15,11 +15,6 @@ public class Post {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String body;
 
-
-//    private String title;
-//    private String body;
-//    private String id;
-
     //Create
     public Post(String title, String body) {
         this.title = title;
