@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public long id;
+    private long id;
 
     @Column(nullable = false, length = 100, unique = true)
     private String email;
@@ -18,21 +18,22 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    public User(long id, String email, String username, String password) {
+    public User() {
+    }
 
+    //Read
+    public User(long id, String email, String username, String password) {
         this.id = id;
         this.email = email;
         this.username = username;
         this.password = password;
     }
 
+    //Create
     public User(String email, String username, String password) {
         this.email = email;
         this.username = username;
         this.password = password;
-    }
-
-    public User() {
     }
 
     public long getId() {
@@ -51,19 +52,19 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

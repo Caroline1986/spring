@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/head :: head('Show Page')">
-
+<head th:replace="partials/head :: head('Show Ad')">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Roll the Dice</title>
 </head>
 <body>
 <nav th:replace="partials/navbar :: nav"></nav>
-<header th:replace="partials/header :: header('Welcome to the Codeup Blog/Adlister!')"></header>
+<header th:replace="partials/header :: header('Welcome to the Codeup Blog!')"></header>
+
 <main>
     <div class="card">
         <h2 th:text="${ad.title}"></h2>
@@ -16,11 +16,13 @@
             <li th:each="category: ${ad.categories}" th:text="${category.name}"></li>
         </ul>
         <div th:each="image: ${ad.images}">
-            <img th:src="${image.path}" alt="">
+            <img th:src="${image.path}" >
         </div>
-<!--        <p>Created by: <span th:text="${ad.owner.username}"></span></p>-->
+        <p>Created by: <span th:text="${ad.owner.username}"></span></p>
     </div>
 </main>
-</body>
+
 <footer th:replace="partials/partials :: footer"></footer>
+<th:block th:include="partials/scripts :: scripts"></th:block>
+</body>
 </html>

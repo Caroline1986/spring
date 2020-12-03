@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head th:replace="partials/head :: head('Show Page')">
 
     <meta charset="UTF-8">
@@ -15,7 +15,7 @@
 <!--        <div th:each="image: ${post.images}">-->
 <!--            <img th:src="${image.path}" alt="">-->
         </div>
-<!--        <p>Created by: <span th:text="${post.owner.username}"></span></p>-->
+    <p>Created by: <span th:text="${post.owner.username}"></span> <span th:text="${post.owner.email}"></span></p>
     </div>
 </main>
 </body>

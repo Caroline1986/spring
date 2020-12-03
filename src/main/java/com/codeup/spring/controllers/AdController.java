@@ -1,7 +1,7 @@
 package com.codeup.spring.controllers;
 
+
 import com.codeup.spring.models.Ad;
-import com.codeup.spring.models.Post;
 import com.codeup.spring.models.User;
 import com.codeup.spring.repository.AdRepository;
 import com.codeup.spring.repository.UserRepository;
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -37,8 +38,8 @@ public class AdController {
     }
 
     @GetMapping("/ads/{id}")
-    public String show(@PathVariable long id, Model model){
-        model.addAttribute("ad", adDao.getOne(id));
+    public String show(@PathVariable long id, Model viewModel){
+        viewModel.addAttribute("ad", adDao.getOne(id));
         return "ads/show";
     }
 
@@ -48,7 +49,6 @@ public class AdController {
     }
 
     @PostMapping("/ads/create")
-    @ResponseBody
     public String createAd(
             @RequestParam(name = "title") String title,
             @RequestParam(name = "description") String desc
@@ -56,17 +56,16 @@ public class AdController {
         User user = userDao.getOne(1L);
         Ad ad = new Ad(title, desc, user, null);
         Ad dbAd = adDao.save(ad);
-        return "redirect:/ads/ " + dbAd.getId();
+        return "redirect:/ads/" + dbAd.getId();
     }
 
-    @GetMapping("/ads/edit")
-    public String showEditForm(@PathVariable long id,  Model viewModel){
+    @GetMapping("/ads/{id}/edit")
+    public String showEditForm(@PathVariable long id, Model viewModel){
         viewModel.addAttribute("ad", adDao.getOne(id));
         return "ads/edit";
     }
 
     @PostMapping("/ads/{id}/edit")
-    @ResponseBody
     public String editAd(
             @PathVariable long id,
             @RequestParam(name = "title") String title,
@@ -85,11 +84,6 @@ public class AdController {
         return "redirect:/ads";
     }
 
-//    @DeleteMapping("/ads/{id}")
-//    public String deleteAd(@PathVariable long id){
-//        adDao.deleteById(id);
-//        return "redirect:/ads";
-//    }
 }
 
 
