@@ -1,5 +1,6 @@
 package com.codeup.spring.controllers;
 
+import com.codeup.spring.models.Ad;
 import com.codeup.spring.models.Post;
 import com.codeup.spring.models.User;
 import com.codeup.spring.repository.PostRepository;
@@ -36,19 +37,17 @@ public class PostController {
 
 
     @GetMapping("/posts/create")
-    public String createPostForm() {
+    public String createPostForm(Model viewModel) {
+        viewModel.addAttribute("post", new Post());
         return "posts/create";
     }
 
     @PostMapping("/posts/create")
-    public String createPost(
-            @RequestParam(name = "title") String title,
-            @RequestParam(name = "body") String body
-    ) {
-        User user = userDao.getOne(1L);
-        Post post = new Post(title, body, user, null);
-        Post dbPost = postDao.save(post);
-        return "redirect:/posts/" + dbPost.getId();
+    public String createPost(@ModelAttribute Post postToBeSaved) {
+        User userDb = userDao.getOne(1L);
+        postToBeSaved.setOwner(userDb);
+        Post dbPost = postDao.save(postToBeSaved);
+        return "redirect://www.youtube.com/watch?v=dQw4w9WgXcQ";
     }
 
     @GetMapping("/posts/{id}/edit")

@@ -9,7 +9,7 @@
 <nav th:replace="partials/navbar :: nav"></nav>
 <header th:replace="partials/header :: header('Welcome to the Codeup Blog/Adlister!')"></header>
 <h1>Edit Post</h1>
-<form th:action="@{|/ads/{id}/edit(id=${ad.id})|}" th:method="POST">
+<form th:action="@{@{'/ads/' + ${ad.id} + '/edit'}}" th:method="POST">
     <label for="title">Title</label>
     <input id="title" type="text" name="title" th:value="${ad.title}" placeholder="Enter title">
     <label for="description">Body</label>

@@ -9,13 +9,13 @@
 
 <main class="container">
 
-    <form th:action="@{/posts/create}" th:method="post" >
+    <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
         Title:
-        <input name="title" id="name-ipt"/>
+        <input th:field="*{title}"/>
         <br />
         Blog:
         <label>
-            <textarea name="body"></textarea>
+            <textarea th:field="*{body}"></textarea>
         </label>
         <br />
         <input type="submit" />

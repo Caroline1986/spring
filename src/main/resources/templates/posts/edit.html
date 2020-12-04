@@ -10,11 +10,16 @@
 <nav th:replace="partials/navbar :: nav"></nav>
 <header th:replace="partials/header :: header('Welcome to the Codeup Blog/Adlister!')"></header>
 <h1>Edit Post</h1>
-<form th:action="@{'/posts/' + ${post.id} + '/edit'}" th:method="POST">
-    <label for="title">Title</label>
+<form th:action="@{'/posts/' + ${post.id} + '/edit'}" th:method="POST" th:object="${post}">
+<!--     <label for="title">Title</label>
     <input id="title" type="text" name="title" th:value="${post.title}" placeholder="Enter title">
     <label for="body">Body</label>
     <textarea id="body" name="body" th:text="${post.body}" placeholder="Enter body"></textarea>
+    <button class="btn btn-primary">Update Post</button>-->
+    <label for="title">Title</label>
+    <input id="title" type="text" th:field="*{title}" th:value="${post.title}" placeholder="Enter title">
+    <label for="body">Body</label>
+    <textarea id="body" th:field="*{body}" th:text="${post.body}" placeholder="Enter body"></textarea>
     <button class="btn btn-primary">Update Post</button>
 </form>
 
