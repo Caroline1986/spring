@@ -44,18 +44,25 @@ public class AdController {
     }
 
     @GetMapping("/ads/create")
-    public String showCreateForm(){
+    public String showCreateForm(Model viewModel){
+        viewModel.addAttribute("ad", new Ad());
         return "ads/new";
     }
 
     @PostMapping("/ads/create")
     public String createAd(
-            @RequestParam(name = "title") String title,
-            @RequestParam(name = "description") String desc
+            @ModelAttribute Ad adToBeSaved
+
+//            instead of this  vvvv
+//            @RequestParam(name = "title") String title,
+//            @RequestParam(name = "description") String desc
     ){
-        User user = userDao.getOne(1L);
-        Ad ad = new Ad(title, desc, user, null);
-        Ad dbAd = adDao.save(ad);
+        User userDb = userDao.getOne(1L);
+        adToBeSaved.setOwner(userDb);
+        Ad dbAd = adDao.save(adToBeSaved);
+//        User user = userDao.getOne(1L);
+//        Ad ad = new Ad(title, desc, user, null);
+//        Ad dbAd = adDao.save(ad);
         return "redirect:/ads/" + dbAd.getId();
     }
 
