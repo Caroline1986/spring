@@ -50,13 +50,11 @@ public class AdController {
     }
 
     @PostMapping("/ads/create")
-    public String createAd(
-            @ModelAttribute Ad adToBeSaved
-
+    public String createAd(@ModelAttribute Ad adToBeSaved){
 //            instead of this  vvvv
 //            @RequestParam(name = "title") String title,
 //            @RequestParam(name = "description") String desc
-    ){
+
         User userDb = userDao.getOne(1L);
         adToBeSaved.setOwner(userDb);
         Ad dbAd = adDao.save(adToBeSaved);
@@ -78,6 +76,7 @@ public class AdController {
             @RequestParam(name = "title") String title,
             @RequestParam(name = "description") String desc
     ){
+
         Ad dbAd = adDao.getOne(id);
         dbAd.setTitle(title);
         dbAd.setDescription(desc);

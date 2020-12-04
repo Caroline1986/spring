@@ -50,6 +50,24 @@ public class PostController {
         return "redirect://www.youtube.com/watch?v=dQw4w9WgXcQ";
     }
 
+//     @GetMapping("/posts/{id}/edit")
+//    public String viewEditPostForm(@PathVariable long id, Model model) {
+//        model.addAttribute("post", postDao.getOne(id));
+//        return "posts/edit";
+//    }
+//
+//    @PostMapping("/posts/{id}/edit")
+//    public String editPost(
+//            @PathVariable long id,
+//            @RequestParam String title,
+//            @RequestParam String body
+//    ){
+//       Post dbPost = postDao.getOne(id);
+//        dbPost.setTitle(title);
+//        dbPost.setBody(body);
+//        postDao.save(dbPost);
+//        return "redirect:/posts/" + dbPost.getId();
+//    }
     @GetMapping("/posts/{id}/edit")
     public String viewEditPostForm(@PathVariable long id, Model model) {
         model.addAttribute("post", postDao.getOne(id));
@@ -57,15 +75,12 @@ public class PostController {
     }
 
     @PostMapping("/posts/{id}/edit")
-    public String editPost(
-            @PathVariable long id,
-            @RequestParam(name = "title") String title,
-            @RequestParam(name = "body") String body
-    ){
-       Post dbPost = postDao.getOne(id);
-        dbPost.setTitle(title);
-        dbPost.setBody(body);
-        postDao.save(dbPost);
+    public String editPost(@ModelAttribute Post postToBeUpdated){
+        User userDb = userDao.getOne(1L);
+        postToBeUpdated.setOwner(userDb);
+        postDao.save(postToBeUpdated);
+//        return "redirect:/posts";
+        Post dbPost = postDao.save(postToBeUpdated);
         return "redirect:/posts/" + dbPost.getId();
     }
 

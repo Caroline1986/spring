@@ -17,9 +17,9 @@
     <textarea id="body" name="body" th:text="${post.body}" placeholder="Enter body"></textarea>
     <button class="btn btn-primary">Update Post</button>-->
     <label for="title">Title</label>
-    <input id="title" type="text" th:field="*{title}" th:value="${post.title}" placeholder="Enter title">
+    <input type="text" th:field="*{title}" placeholder="Enter title">
     <label for="body">Body</label>
-    <textarea id="body" th:field="*{body}" th:text="${post.body}" placeholder="Enter body"></textarea>
+    <textarea th:field="*{body}" placeholder="Enter body"></textarea>
     <button class="btn btn-primary">Update Post</button>
 </form>
 
