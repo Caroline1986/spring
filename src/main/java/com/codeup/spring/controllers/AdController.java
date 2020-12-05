@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -61,7 +60,7 @@ public class AdController {
         User userDb = userDao.getOne(1L);
         adToBeSaved.setOwner(userDb);
         Ad dbAd = adDao.save(adToBeSaved);
-        emailService.prepareAndSend(dbAd, "Ad has been created", "You can find it with the id of " + dbAd.getId());
+//        emailService.prepareAndSend(dbAd, "Ad has been created", "You can find it with the id of " + dbAd.getId());
 //        User user = userDao.getOne(1L);
 //        Ad ad = new Ad(title, desc, user, null);
 //        Ad dbAd = adDao.save(ad);

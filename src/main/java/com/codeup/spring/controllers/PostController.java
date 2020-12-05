@@ -1,13 +1,16 @@
 package com.codeup.spring.controllers;
 
-import com.codeup.spring.models.Ad;
 import com.codeup.spring.models.Post;
 import com.codeup.spring.models.User;
 import com.codeup.spring.repository.PostRepository;
 import com.codeup.spring.repository.UserRepository;
+import com.codeup.spring.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 
 @Controller
@@ -15,10 +18,12 @@ public class PostController {
 
     private final PostRepository postDao;
     private final UserRepository userDao;
+    private final EmailService emailService;
 
-    public PostController(PostRepository adDao, UserRepository userDao) {
+    public PostController(PostRepository adDao, UserRepository userDao, EmailService emailService) {
         this.postDao = adDao;
         this.userDao = userDao;
+        this.emailService = emailService;
     }
 
     @GetMapping("/posts")
@@ -47,7 +52,9 @@ public class PostController {
         User userDb = userDao.getOne(1L);
         postToBeSaved.setOwner(userDb);
         Post dbPost = postDao.save(postToBeSaved);
-        return "redirect://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        emailService.prepareAndSend(dbPost, "Post has been created", "You can find it with the id of " + dbPost.getId());
+        return "redirect:/posts/" + dbPost.getId();
+//        return "redirect://www.youtube.com/watch?v=dQw4w9WgXcQ";
     }
 
 //     @GetMapping("/posts/{id}/edit")
