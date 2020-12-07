@@ -2,27 +2,53 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/head :: head('All Posts')">
     <meta charset="UTF-8">
+    <link th:href="@{../styling/custom.css}" rel="stylesheet" />
 </head>
 <body>
 <nav th:replace="partials/navbar :: nav"></nav>
 <header th:replace="partials/header :: header('Welcome to the Codeup Blog!')"></header>
 
+
 <main class="container">
-    <div class="card" th:each="post : ${posts}">
-        <a th:href="@{|/posts/${post.id}|}" >
-            <h3 class="text-center" th:text="${post.title}"></h3>
-        </a>
-        <p th:text="${post.body}"></p>
-        <div th:each="image: ${post.postImages}">
-            <img th:src="${image.path}" alt="">
+    <div class="card mb-3" style="max-width: 540px;" th:each="post : ${posts}">
+        <div class="row g-0">
+            <div class="col-md-4" >
+                <div th:each="image: ${post.postImages}">
+                    <img th:src="${image.path}" alt="">
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="card-body">
+                    <a th:href="@{|/posts/${post.id}|}" >
+                    <h5 class="card-title" th:text="${post.title}"></h5>
+                    </a>
+                    <p class="card-text" th:text="${post.body}"></p>
+                    <a th:href="@{|/posts/${post.id}/edit|}">
+                        <button>Edit Post</button>
+                    </a>
+                    <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST" style="display:inline">
+                        <button>Delete Post</button>
+                    </form>
+                </div>
+            </div>
         </div>
-        <a th:href="@{|/posts/${post.id}/edit|}">
-            <button>Edit Post</button>
-        </a>
-        <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST" style="display:inline">
-            <button>Delete Post</button>
-        </form>
     </div>
+<!--        <a th:href="@{|/posts/${post.id}|}" >-->
+<!--            <h3 class="text-center" th:text="${post.title}"></h3>-->
+<!--        </a>-->
+
+<!--        <p th:text="${post.body}"></p>-->
+<!--        <div th:each="image: ${post.postImages}">-->
+<!--            <img th:src="${image.path}" alt="">-->
+<!--        </div>-->
+<!--        <a th:href="@{|/posts/${post.id}/edit|}">-->
+<!--            <button>Edit Post</button>-->
+<!--        </a>-->
+<!--        <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST" style="display:inline">-->
+<!--            <button>Delete Post</button>-->
+<!--        </form>-->
+<!--    </div>-->
 </main>
 <footer th:replace="partials/partials :: footer"></footer>
 <th:block th:include="partials/scripts :: scripts"></th:block>

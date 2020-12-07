@@ -1,0 +1,14 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: darkslategray;
+}
+
+img {
+    max-width: 10%;
+    max-height: 100%;
+}
+
