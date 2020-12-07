@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/head :: head('All Posts')">
     <meta charset="UTF-8">
-    <title>Title</title>
 </head>
 <body>
+<nav th:replace="partials/navbar :: nav"></nav>
+<header th:replace="partials/header :: header('Welcome to the Codeup Blog!')"></header>
+<main>
+    <div class="card">
+        <h2 th:text="${user.username}"></h2>
+        <p th:text="${username}"></p>
+        <div th:each="image: ${post.postImages}">
+            <img th:src="${image.path}" alt="">
+        </div>
+        <p>Created by: <span th:text="${post.owner.username}"></span> <span th:text="${post.owner.email}"></span></p>
+    </div>
+</main>
 
 </body>
+<footer th:replace="partials/partials :: footer"></footer>
+<th:block th:include="partials/scripts :: scripts"></th:block>
 </html>
