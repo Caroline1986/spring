@@ -144,10 +144,10 @@ public class PostsIntegrationTests {
     public void testDeletePost() throws Exception {
 
         this.mvc.perform(
-                post("/posts").with(csrf())
+                post("/posts/create").with(csrf())
                         .session((MockHttpSession) httpSession)
                         .param("title", "post to be deleted")
-                        .param("description", "won't last long"))
+                        .param("body", "won't last long"))
                 .andExpect(status().is3xxRedirection());
 
 
@@ -155,7 +155,7 @@ public class PostsIntegrationTests {
 
 
         this.mvc.perform(
-                post("/posts/create" + existingPost.getId() + "/delete").with(csrf())
+                post("/posts/" + existingPost.getId() + "/delete").with(csrf())
                         .session((MockHttpSession) httpSession)
                         .param("id", String.valueOf(existingPost.getId())))
                 .andExpect(status().is3xxRedirection());
