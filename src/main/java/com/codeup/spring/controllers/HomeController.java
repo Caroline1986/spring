@@ -17,12 +17,6 @@ public class HomeController {
         return "landing";
     }
 
-
-    @GetMapping("/home")
-    public String welcome() {
-        return "/home";
-    }
-
     @GetMapping("/join")
     public String showJoinForm(Model model) {
         List<String> cohortNames = new ArrayList<>();
