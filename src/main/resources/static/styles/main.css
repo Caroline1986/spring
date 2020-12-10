@@ -1,8 +1,4 @@
 
-* {
-    box-sizing: border-box;
-}
-
 body {
     background-color: darkslategray;
 }
@@ -20,18 +16,18 @@ img {
 }
 
 body {
-    background-image: url("../img/craft-nurse/tiedye-background.jpg");
+    background-image: url("/img/craft-nurse/tiedye-background.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     margin: 0;
 }
 
-nav {
-    display: flex;
-    background: #333333;
-    flex-direction: row-reverse;
+/*nav {*/
+/*    display: flex;*/
+/*    background: #333333;*/
+/*    flex-direction: row-reverse;*/
 
-}
+/*}*/
 
 
 ul  {
@@ -58,10 +54,6 @@ nav ul li:nth-child(3) {
     margin-left: auto;
 }
 
-.search {
-    display: flex;
-    align-items: center;
-}
 
 .card {
     display: flex;
