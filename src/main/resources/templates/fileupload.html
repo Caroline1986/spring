@@ -1,21 +1,21 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
-<!--<head th:replace="partials/head :: head('Create Post')">-->
-<!--    <meta charset="UTF-8">-->
-<!--</head>-->
-<!--<body>-->
-<!--<nav th:replace="partials/navbar :: nav"></nav>-->
-<!--<header th:replace="partials/header :: header('Welcome to the Codeup Blog/Adlister!')"></header>-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/head :: head('Create Post')">
+    <meta charset="UTF-8">
+</head>
+<body>
+<nav th:replace="partials/navbar :: nav"></nav>
+<header th:replace="partials/header :: header('Welcome to the Codeup Blog/Adlister!')"></header>
 
-<!--<form action="/fileupload" method="POST" enctype="multipart/form-data">-->
-<!--    <label for="file">Upload a file!</label>-->
-<!--    <input id="file" name="file" type="file" />-->
-<!--    <br />-->
-<!--    <input type="submit" value="Upload" />-->
-<!--</form>-->
+<form th:action="@{/fileupload}" method="POST" enctype="multipart/form-data">
+    <label for="file">Upload a file!</label>
+    <input id="file" name="file" type="file" />
+    <br />
+    <input type="submit" value="Upload" />
+</form>
 
 
-<!--<footer th:replace="partials/partials :: footer"></footer>-->
-<!--<th:block th:include="partials/scripts :: scripts"></th:block>-->
-<!--</body>-->
-<!--</html>-->
+<footer th:replace="partials/partials :: footer"></footer>
+<th:block th:include="partials/scripts :: scripts"></th:block>
+</body>
+</html>

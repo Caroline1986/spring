@@ -5,13 +5,16 @@ import com.codeup.spring.models.User;
 import com.codeup.spring.repository.PostRepository;
 import com.codeup.spring.repository.UserRepository;
 import com.codeup.spring.services.EmailService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
 
 
 @Controller
@@ -49,10 +52,23 @@ public class PostController {
     }
 
     @PostMapping("/posts/create")
-    public String createPost(@ModelAttribute Post postToBeSaved) {
+    public String createPost(@ModelAttribute Post postToBeSaved, @RequestParam(name = "file") MultipartFile uploadedFile,
+                             Model model
+    ) {
+        String filename = uploadedFile.getOriginalFilename();
+        String filepath = Paths.get(uploadPath, filename).toString();
+        File destinationFile = new File(filepath);
+
         User userDb = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         postToBeSaved.setOwner(userDb);
         Post dbPost = postDao.save(postToBeSaved);
+        try {
+            uploadedFile.transferTo(destinationFile);
+            model.addAttribute("message", "File successfully uploaded!");
+        } catch (IOException e) {
+            e.printStackTrace();
+            model.addAttribute("message", "Oops! Something went wrong! " + e);
+        }
         emailService.prepareAndSend(dbPost, "Post has been created", "You can find it with the id of " + dbPost.getId());
         return "redirect:/posts/" + dbPost.getId();
 //        return "redirect://www.youtube.com/watch?v=dQw4w9WgXcQ";
@@ -79,6 +95,32 @@ public class PostController {
     public String deletePost(@PathVariable long id) {
         System.out.println("Does this run?");
         postDao.deleteById(id);
+        return "redirect:/posts";
+    }
+
+    @Value("${file-upload-path}")
+    private String uploadPath;
+
+    @GetMapping("/fileupload")
+    public String showUploadFileForm() {
+        return "fileupload";
+    }
+
+    @PostMapping("/fileupload")
+    public String saveFile(
+            @RequestParam(name = "file") MultipartFile uploadedFile,
+            Model model
+    ) {
+        String filename = uploadedFile.getOriginalFilename();
+        String filepath = Paths.get(uploadPath, filename).toString();
+        File destinationFile = new File(filepath);
+        try {
+            uploadedFile.transferTo(destinationFile);
+            model.addAttribute("message", "File successfully uploaded!");
+        } catch (IOException e) {
+            e.printStackTrace();
+            model.addAttribute("message", "Oops! Something went wrong! " + e);
+        }
         return "redirect:/posts";
     }
 
