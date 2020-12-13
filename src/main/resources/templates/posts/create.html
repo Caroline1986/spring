@@ -9,7 +9,7 @@
 
 <main class="container">
 
-    <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
+    <form th:action="@{/posts/create}" th:method="post" th:object="${post}"  enctype="multipart/form-data">
         Title:
         <input th:field="*{title}"/>
         <br />
@@ -18,13 +18,14 @@
             <textarea th:field="*{body}"></textarea>
         </label>
         <br />
-        <input type="submit" />
-    </form>
-    <form action="/fileupload" method="POST" enctype="multipart/form-data">
+<!--    </form>-->
+<!--    <form action="/fileupload" method="POST" enctype="multipart/form-data">-->
         <label for="file">Upload a file!</label>
         <input id="file" name="file" type="file" />
-        <br />
-        <input type="submit" value="upload" />
+<!--        <label>Upload a file!</label>-->
+<!--        <input  th:field="*{postImages}" type="file" />-->
+<!--        <br />-->
+        <input type="submit" />
     </form>
 
 </main>
