@@ -1,5 +1,7 @@
 package com.codeup.spring.models;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -22,22 +24,27 @@ public class Post {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
     private List<PostImage> postImages;
 
+    @Value("${file-upload-path}")
+    private String uploadPath;
+
     //Create
-    public Post(String title, String body, User owner, List<PostImage> postImages) {
+    public Post(String title, String body, User owner, List<PostImage> postImages, String uploadPath) {
         this.title = title;
         this.body = body;
         this.owner = owner;
         this.postImages = postImages;
+        this.uploadPath = uploadPath;
     }
 
 
     // READ
-    public Post(long id, String title, String body, User owner, List<PostImage> postImages) {
+    public Post(long id, String title, String body, User owner, List<PostImage> postImages,  String uploadPath) {
         this.id = id;
         this.title = title;
         this.body = body;
         this.owner = owner;
         this.postImages = postImages;
+        this.uploadPath = uploadPath;
     }
 
     public Post() {
@@ -84,5 +91,13 @@ public class Post {
 
     public void setPostImages(List<PostImage> postImages) {
         this.postImages = postImages;
+    }
+
+    public String getUploadPath() {
+        return uploadPath;
+    }
+
+    public void setUploadPath(String uploadPath) {
+        this.uploadPath = uploadPath;
     }
 }

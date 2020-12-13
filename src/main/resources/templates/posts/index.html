@@ -55,8 +55,8 @@
             <img th:src="${image.path}" alt="">
         </div>
         <p>Created by: <span th:text="${post.owner.username}"></span> <span th:text="${post.owner.email}"></span></p>
-    </div>
-</main>
+<!--    </div>-->
+<!--</main>-->
 <!--        <a th:href="@{|/posts/${post.id}|}" >-->
 <!--            <h3 class="text-center" th:text="${post.title}"></h3>-->
 <!--        </a>-->
@@ -65,13 +65,13 @@
 <!--        <div th:each="image: ${post.postImages}">-->
 <!--            <img th:src="${image.path}" alt="">-->
 <!--        </div>-->
-<!--        <a th:href="@{|/posts/${post.id}/edit|}">-->
-<!--            <button>Edit Post</button>-->
-<!--        </a>-->
-<!--        <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST" style="display:inline">-->
-<!--            <button>Delete Post</button>-->
-<!--        </form>-->
-<!--    </div>-->
+        <a th:href="@{|/posts/${post.id}/edit|}">
+            <button>Edit Post</button>
+        </a>
+        <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST" style="display:inline">
+            <button>Delete Post</button>
+        </form>
+    </div>
 </main>
 </body>
 <footer th:replace="partials/partials :: footer"></footer>
