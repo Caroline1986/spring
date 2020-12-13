@@ -24,6 +24,7 @@ public class Post {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
     private List<PostImage> postImages;
 
+    @Column()
     @Value("${file-upload-path}")
     private String uploadPath;
 
