@@ -38,6 +38,6 @@ public class FileUploadController {
             e.printStackTrace();
             model.addAttribute("message", "Oops! Something went wrong! " + e);
         }
-        return "redirect:/posts";
+        return "fileupload";
     }
 }

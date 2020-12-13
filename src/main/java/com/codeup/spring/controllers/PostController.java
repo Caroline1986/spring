@@ -5,7 +5,6 @@ import com.codeup.spring.models.User;
 import com.codeup.spring.repository.PostRepository;
 import com.codeup.spring.repository.UserRepository;
 import com.codeup.spring.services.EmailService;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -82,8 +81,5 @@ public class PostController {
         postDao.deleteById(id);
         return "redirect:/posts";
     }
-
-    @Value("${file-upload-path}")
-    private String uploadPath;
 
 }
