@@ -7,22 +7,12 @@
 <nav th:replace="partials/navbar :: nav"></nav>
 <header th:replace="partials/header :: header('Welcome to the Codeup Blog/Adlister!')"></header>
 
-<main class="container">
-
-    <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
-        Title:
-        <input th:field="*{title}"/>
-        <br />
-        Blog:
-        <label>
-            <textarea th:field="*{body}"></textarea>
-        </label>
-        <br />
-        <input type="submit" />
-    </form>
-
-</main>
-
+<form action="/fileupload" method="POST" enctype="multipart/form-data">
+    <label for="file">Upload a file!</label>
+    <input id="file" name="file" type="file" />
+    <br />
+    <input type="submit" value="upload" />
+</form>
 <footer th:replace="partials/partials :: footer"></footer>
 <th:block th:include="partials/scripts :: scripts"></th:block>
 </body>

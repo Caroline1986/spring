@@ -9,12 +9,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Paths;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 
 @Controller
@@ -42,8 +40,7 @@ public class PostController {
         model.addAttribute("post", postDao.getOne(id));
         return "posts/show";
     }
-    @Value("${file-upload-path}")
-    private String uploadPath;
+
 
 
     @GetMapping("/posts/create")
@@ -53,22 +50,10 @@ public class PostController {
     }
 
     @PostMapping("/posts/create")
-    public String createPost(@ModelAttribute Post postToBeSaved,
-                             @RequestParam(name = "file") MultipartFile uploadedFile,
-                             Model model) {
+    public String createPost(@ModelAttribute Post postToBeSaved) {
         User userDb = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         postToBeSaved.setOwner(userDb);
         Post dbPost = postDao.save(postToBeSaved);
-        String filename = uploadedFile.getOriginalFilename();
-        String filepath = Paths.get(uploadPath, filename).toString();
-        File destinationFile = new File(filepath);
-        try {
-            uploadedFile.transferTo(destinationFile);
-            model.addAttribute("message", "File successfully uploaded!");
-        } catch (IOException e) {
-            e.printStackTrace();
-            model.addAttribute("message", "Oops! Something went wrong! " + e);
-        }
         emailService.prepareAndSend(dbPost, "Post has been created", "You can find it with the id of " + dbPost.getId());
         return "redirect:/posts/" + dbPost.getId();
 //        return "redirect://www.youtube.com/watch?v=dQw4w9WgXcQ";
@@ -98,6 +83,7 @@ public class PostController {
         return "redirect:/posts";
     }
 
-
+    @Value("${file-upload-path}")
+    private String uploadPath;
 
 }
