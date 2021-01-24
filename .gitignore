@@ -33,4 +33,4 @@ build/
 .vscode/
 
 src/main/resources/application.properties
-/Users/carolineesquivel/IdeaProjects/spring-bio/src/main/resources/static/styles/js/keys.js
+src/main/resources/static/static/js/keys.js
