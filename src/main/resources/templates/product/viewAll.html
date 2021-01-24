@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Home</title>
+    <div th:replace="partials/header :: header('The Crafty Retired Nurse')"></div>
+</head>
+<body>
+<div th:replace="partials/navbar :: nav"></div>
+<div class="container">
+
+    <h1>Here are all my products</h1>
+
+    <div class="row" >
+        <div th:each="product : ${products}">
+
+            <div class="col s7 m3">
+                <div class="card">
+
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" th:src="${product.img}">
+                    </div>
+
+                    <div class="card-content">
+                        <span th:text="${product.name}" class="card-title activator grey-text text-darken-4">Title<i class="material-icons right">more info</i></span>
+                        <p><a th:href="'/product/' + ${product.id}">Link</a></p>
+                    </div>
+
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Title<i class="material-icons right">close</i></span>
+                        <p th:text="${product.description}"></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

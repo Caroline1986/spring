@@ -12,13 +12,16 @@ import java.util.List;
 
 @Controller
 public class ProductController {
+
     @Autowired
     ProductRepo productDao;
 
     @Value("${filestack.api.key}")
     private String filestackAPIKey;
 
-    ProductController(){}
+    public ProductController(ProductRepo productDao) {
+        this.productDao = productDao;
+    }
 
     @GetMapping("/products")
     public String viewAllProducts(Model model){
@@ -32,7 +35,7 @@ public class ProductController {
         return "product/create";
     }
 
-    @GetMapping("/product/create")
+    @RequestMapping("/product/create")
     public String createAProduct(
             @RequestParam(name = "product_name") String productName,
             @RequestParam(name = "product_description") String productDescription,
