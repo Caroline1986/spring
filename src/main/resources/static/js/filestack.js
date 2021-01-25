@@ -1,6 +1,6 @@
 // Make sure to put your personal FileStackKey in the keys.js file
 console.log("hello");
-const client = filestack.init(filestackAPIKey);
+const client = filestack.init('filestackAPIKey');
 
 // we will pass this object as an argument in the picker method.
 const options = {
