@@ -10,7 +10,7 @@ img {
 }
 
 body {
-    background-image: url("craft-nurse/tiedye-background.jpg");
+    background-image: url("../craft-nurse/tiedye-background.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     margin: 0;

@@ -2,9 +2,13 @@
     <head th:replace="partials/head :: head(create)">
     <meta charset="UTF-8" />
     <title>Create</title>
-    <div th:replace="partials/header :: header('The Crafty Retired Nurse')"></div>
+
 </head>
 <body>
+<div th:replace="partials/header :: header('The Crafty Retired Nurse')"></div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
 <div th:replace="partials/navbar :: nav"></div>
 <div class="container">
     <h1>Create Product</h1>
@@ -26,17 +30,10 @@
 
         <br>
 
-        <!--    this is where i dislplay the preview image.-->
-        <!--    note: if you dont specify the src, alt, width, or height the img will basically be hidden. -->
         <img id="imagePreview" alt="image"  src="">
-
-        <!--    this is our hidden input field and this is what we want to actually pass our image url in. -->
         <input type="hidden" id="image" name="product_image_url">
 
-        <!--    This is the button a user will press if they want to open the filepicker -->
-        <!--    note: you might want to change the text in the button after -->
-        <!--    they have uploaded a image with the filepicker to "change picture" or file. -->
-        <button id="addPicture">addPicture</button>
+        <button id="addPicture">Add Picture</button>
 
         <br>
 
@@ -45,14 +42,11 @@
     </form>
 </div>
 
-<!-- We reference these files prior to the filestack.js because they need to be loaded into the page before filestack.js can use their contents.-->
-<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js" crossorigin="anonymous" defer></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script src="/keys.js"></script>
+
 <script type="text/javascript" th:src="@{/js/filestack.js}" defer></script>
-<!-- we reference our filestack.js last because it is dependent on all three files above it.-->
-<!--<script src="../../static/js/filestack.js"></script>-->
-
-
 </body>
 </html>

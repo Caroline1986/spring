@@ -1,5 +1,7 @@
 package com.codeup.spring.models;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.*;
 
 @Entity
@@ -39,6 +41,8 @@ public class Product {
         this.price = price;
         this.img = img;
     }
+
+
 
     public long getId() {
         return id;

@@ -41,7 +41,7 @@ public class ProductController {
             @RequestParam(name = "product_price") float productPrice,
             @RequestParam(name = "product_image_url") String productImgUrl
     ){
-        Product productToAdd = new Product(productName,productDescription,productPrice,productImgUrl);
+        Product productToAdd = new Product(productName,productDescription,productPrice, productImgUrl);
         Product productInDB = productDao.save(productToAdd);
 
         return "redirect:/product/" + productInDB.getId();
