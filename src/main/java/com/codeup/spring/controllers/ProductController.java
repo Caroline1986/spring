@@ -1,5 +1,6 @@
 package com.codeup.spring.controllers;
 
+
 import com.codeup.spring.models.Product;
 import com.codeup.spring.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +18,9 @@ public class ProductController {
     ProductRepo productDao;
 
     @Value("${filestack.api.key}")
-    private String filestackAPIKey;
+    private String fileStackApiKey;
 
-    public ProductController(ProductRepo productDao) {
-        this.productDao = productDao;
-    }
+    ProductController(){}
 
     @GetMapping("/products")
     public String viewAllProducts(Model model){
@@ -35,14 +34,14 @@ public class ProductController {
         return "product/create";
     }
 
-    @RequestMapping("/product/create")
+    @PostMapping("/product/create")
     public String createAProduct(
             @RequestParam(name = "product_name") String productName,
             @RequestParam(name = "product_description") String productDescription,
             @RequestParam(name = "product_price") float productPrice,
             @RequestParam(name = "product_image_url") String productImgUrl
     ){
-        Product productToAdd = new Product(productName, productDescription, productPrice, productImgUrl);
+        Product productToAdd = new Product(productName,productDescription,productPrice,productImgUrl);
         Product productInDB = productDao.save(productToAdd);
 
         return "redirect:/product/" + productInDB.getId();
@@ -50,15 +49,16 @@ public class ProductController {
 
     @RequestMapping(path = "/keys.js", produces = "application/javascript")
     @ResponseBody
-    public String apiKey(){
-        System.out.println(filestackAPIKey);
-        return "const FileStackApiKey = `" + filestackAPIKey + "`";
+    public String apikey(){
+        System.out.println(fileStackApiKey);
+        return "const FileStackApiKey = `" + fileStackApiKey + "`";
     }
 
+
     @GetMapping("/product/{product_id}")
-    public String viewAProduct(@PathVariable long product_id, Model model){
+    public String vewAProduct(@PathVariable long product_id, Model model){
         Product productToView = productDao.getOne(product_id);
-        model.addAttribute("product", productToView);
+        model.addAttribute("product",productToView);
         return "product/one";
     }
 
@@ -76,14 +76,14 @@ public class ProductController {
             @RequestParam(name = "product_price") float productPrice,
             @RequestParam(name = "product_image_url") String productImgUrl
     ){
-        Product productToEdit = new Product(product_id, productName, productDescription, productPrice, productImgUrl);
+        Product productToEdit = new Product(product_id,productName,productDescription,productPrice,productImgUrl);
         productDao.save(productToEdit);
 
         return "redirect:/product/" + product_id;
     }
 
     @GetMapping("/product/{product_id}/delete")
-    public String deleteAProductForm(@PathVariable long product_id, Model model){
+    public String deleteAProductForm(@PathVariable long product_id,Model model){
         Product productToDelete = productDao.getOne(product_id);
         model.addAttribute("product", productToDelete);
         return "product/delete";
@@ -92,6 +92,8 @@ public class ProductController {
     @PostMapping("/product/{product_id}/delete")
     public String deleteAProduct(@PathVariable long product_id){
         productDao.deleteById(product_id);
+
         return "redirect:/products";
     }
+
 }

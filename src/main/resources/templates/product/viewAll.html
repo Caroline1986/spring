@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="partials/head :: head(viewAll)">
     <meta charset="UTF-8" />
     <title>Home</title>
     <div th:replace="partials/header :: header('The Crafty Retired Nurse')"></div>
@@ -37,6 +37,6 @@
     </div>
 
 </div>
-
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
 </body>
 </html>
