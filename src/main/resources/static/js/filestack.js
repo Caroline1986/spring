@@ -1,7 +1,7 @@
 
 console.log("hello");
-const client = filestack.init('filestackAPIKey');
-
+const client = filestack.init(filestackAPIKey);
+console.log(client);
 const options = {
     'onFileUploadFinished': callback =>{
         const imgURL = callback.url;
