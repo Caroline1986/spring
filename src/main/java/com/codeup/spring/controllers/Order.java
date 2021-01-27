@@ -12,16 +12,13 @@ import lombok.ToString;
 @ToString
 public class Order {
 
-    public Order(double price, String currency, String method, String intent, String description) {
-        this.price = price;
-        this.currency = currency;
-        this.method = method;
-        this.intent = intent;
-        this.description = description;
-    }
-
-    public Order() {
-    }
+//    public Order(double price, String currency, String method, String intent, String description) {
+//        this.price = price;
+//        this.currency = currency;
+//        this.method = method;
+//        this.intent = intent;
+//        this.description = description;
+//    }
 
 
     public double getPrice() {
