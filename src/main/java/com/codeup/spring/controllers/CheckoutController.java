@@ -36,7 +36,7 @@ public class CheckoutController {
     /**
      * Redirect users to /checkouts if they hit the root
      */
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/checkouts", method = RequestMethod.GET)
     public String root(Model model) {
         return "redirect:/checkouts";
     }
