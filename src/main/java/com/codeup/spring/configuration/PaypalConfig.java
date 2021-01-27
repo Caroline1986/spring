@@ -20,6 +20,7 @@ public class PaypalConfig {
     @Value("${paypal.mode}")
     private String mode;
 
+    @Bean
     public Map<String, String> paypalSdkConfig() {
         Map<String, String> configMap = new HashMap<>();
         configMap.put("mode", mode);
@@ -31,6 +32,7 @@ public class PaypalConfig {
         return new OAuthTokenCredential(clientId, clientSecret, paypalSdkConfig());
     }
 
+    @Bean
     public APIContext apiContext() throws PayPalRESTException {
         APIContext context = new APIContext(oAuthTokenCredential().getAccessToken());
         context.setConfigurationMap(paypalSdkConfig());

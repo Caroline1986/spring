@@ -11,7 +11,7 @@ public class PaypalController {
     @Autowired
     PaypalService service;
 
-    @GetMapping("/pay")
+    @GetMapping("/")
     public String home(){
         return "home";
     }
