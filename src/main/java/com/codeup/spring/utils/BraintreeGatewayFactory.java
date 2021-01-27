@@ -1,4 +1,4 @@
-package com.codeup.spring.objects;
+package com.codeup.spring.utils;
 
 import com.braintreegateway.BraintreeGateway;
 

@@ -1,7 +1,7 @@
 package com.codeup.spring.configuration;
 
 import com.braintreegateway.BraintreeGateway;
-import com.codeup.spring.objects.BraintreeGatewayFactory;
+import com.codeup.spring.utils.BraintreeGatewayFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
