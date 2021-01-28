@@ -1,6 +1,7 @@
 package com.codeup.spring.controllers;
 
 import com.codeup.spring.services.PaypalService;
+import com.codeup.spring.utils.Order;
 import com.paypal.api.payments.Links;
 import com.paypal.api.payments.Payment;
 import com.paypal.base.rest.PayPalRESTException;
@@ -22,7 +23,12 @@ public class PaypalController {
 
     @GetMapping("/")
     public String home() {
-        return "home";
+        return "landing";
+    }
+
+    @GetMapping("/checkout")
+    public String checkout() {
+        return "checkout";
     }
 
     @PostMapping("/pay")
@@ -37,7 +43,7 @@ public class PaypalController {
         } catch (PayPalRESTException e) {
             e.printStackTrace();
         }
-        return "redirect:/";
+        return "checkout";
     }
 
     @GetMapping(value = CANCEL_URL)
@@ -56,7 +62,7 @@ public class PaypalController {
         }catch (PayPalRESTException e){
             System.out.println(e.getMessage());
         }
-        return "redirect:/";
+        return "checkout";
     }
 
 }

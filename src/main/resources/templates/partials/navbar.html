@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://kit.fontawesome.com/170cbfa43d.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <nav th:fragment="nav">
     <ul class="nav bg-dark">
         <li class="nav-item">
-            <a class="nav-link text-light" th:href="@{/}">Codeup Blog</a>
+            <a class="nav-link text-light" th:href="@{/}">Home</a>
         </li>
         <li class="nav-item">
             <a class="nav-link text-light" th:href="@{/posts}">Posts</a>
@@ -28,6 +29,19 @@
         <li class="nav-item">
             <a class="nav-link text-light" th:href="@{/products}">View All</a>
         </li>
+        <li class="nav-item link">
+            <a class="nav-link text-light" data-toggle="modal" data-target="#exampleModal"
+               data-whatever="rnaesq@yahoo.com">Contact</a>
+        </li>
+        <li class="nav-item link">
+            <a class="effect-5" href="https://www.facebook.com/thecraftyretirednurse"><i
+                    class="fab fa-facebook" icon-large></i>
+            </a>
+        </li>
+        <li class="nav-item link">
+            <a class="nav-link text-light" data-toggle="modal" data-target="#shoppingCart"><i
+                    class="fas fa-shopping-cart"></i></a>
+        </li>
         <li class="nav-item ml-auto">
             <a class="nav-link text-light" th:href="@{/sign-up}">Register</a>
         </li>
@@ -36,10 +50,89 @@
         </li>
         <li class="nav-item">
             <form th:action="@{/logout}" th:method="post">
-                <button  type="button" class="nav-link text-light bg-dark">Logout</button>
+                <button type="button" class="nav-link text-light bg-dark">Logout</button>
             </form>
         </li>
     </ul>
 </nav>
+
+<!--    modal box for contact-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <button type="button" class="close mr-0" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Recipient:</label>
+                        <input type="text" class="form-control" id="recipient-name" href="# rnaesq@yahoo.com"
+                               value="rnaesq@yahoo.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Message:</label>
+                        <textarea class="form-control" id="message-text"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Send message</button>
+            </div>
+        </div>
+    </div>
+    <label for="addInput"></label>
+    <input type="text" id="addInput">
+    <button type="submit" id="submitChanges"></button>
+</div>
+
+<div class="modal fade" id="shoppingCart" tabindex="-1" role="dialog" aria-labelledby="mask" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="modal-title text-dark font-weight-bold" id="mask">My Masks</p>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card card-body">
+                    <div class="border-0">
+                        <form method="post" th:action="@{/pay}">
+                            <div class="col-50">
+                                <h3>Payment</h3>
+                                <label>Accepted Cards</label>
+                                <div class="icon-container">
+                                    <i class="fa fa-cc-visa" style="color: navy;"></i>
+                                    <i class="fa fa-cc-amex" style="color: blue;"></i>
+                                    <i class="fa fa-cc-mastercard" style="color: red;"></i>
+                                    <i class="fa fa-cc-discover" style="color: orange;"></i>
+                                </div>
+                                <label for="price">Total</label>
+                                <input type="text" id="price" name="price" value="10">
+                                <label for="currency">Currency</label>
+                                <input type="text" id="currency" name="currency" placeholder="Enter Currency">
+                                <label for="method">Payment Method</label>
+                                <input type="text" id="method" name="method" placeholder="Payment Method">
+                                <label for="description">Payment Description</label>
+                                <input type="text" id="description" name="description"
+                                       placeholder="Payment Description">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Add Item</button>
+                                <button id="clearCart" class="btn btn-danger">Cancel</button>
+                            </div>
+                            <input type="submit" value="Continue to Checkout" class="btn">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

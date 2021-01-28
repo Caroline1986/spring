@@ -21,9 +21,9 @@ public class PaypalService {
             Double total,
             String currency,
             String method,
-            String intent,
             String description,
-            String cancelUrl) throws PayPalRESTException{
+            String cancelUrl,
+            String successUrl) throws PayPalRESTException{
         Amount amount = new Amount();
         amount.setCurrency(currency);
         total = new BigDecimal(total).setScale(2, RoundingMode.HALF_UP).doubleValue();
@@ -41,7 +41,6 @@ public class PaypalService {
 
 
         Payment payment = new Payment();
-        payment.setIntent(intent.toString());
         payment.setPayer(payer);
         payment.setTransactions(transactions);
         RedirectUrls redirectUrls = new RedirectUrls();

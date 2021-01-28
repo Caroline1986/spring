@@ -1,4 +1,4 @@
-package com.codeup.spring.controllers;
+package com.codeup.spring.utils;
 
 
 import lombok.AllArgsConstructor;
