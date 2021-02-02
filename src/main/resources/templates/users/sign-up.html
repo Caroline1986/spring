@@ -10,19 +10,15 @@
 <link href='https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 <style>
     body, html{
-        height: 100%;
+        height: 70%;
         background-repeat: no-repeat;
         background-color: #d3d3d3;
         font-family: 'Lato', Verdana;
     }
 
-    .main{
-        margin-top: 70px;
-    }
     .form-group{
         margin-bottom: 15px;
     }
-
 
 
     input,
@@ -48,9 +44,7 @@
         font-size:18px;
     }
     .main-center{
-        margin-top: 30px;
         margin: 0 auto;
-        max-width: 330px;
         padding: 40px 40px;
 
     }
@@ -66,8 +60,21 @@
         color:#5CB85C;
         font-weight:bold;
     }
-    .iconbk{
+
+    .input-group-addon {
+        padding: 6px 12px;
+        font-size: 14px;
+        font-weight: 400;
+        color: #555;
+        text-align: center;
         background-color:#5CB85C;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .input-group-addon, .input-group-btn {
+        white-space: nowrap;
+        vertical-align: middle;
     }
 </style>
 </head>
@@ -75,16 +82,13 @@
 <body>
 
 <div class="container">
-    <div class="row main">
-        <div class="panel-heading">
-            <div class="panel-title text-center">
-                <h1 class="title">Create Account</h1>
-                <hr />
-            </div>
-        </div>
-        <div class="main-login main-center">
+    <div class="row mainSignup">
+        <div class="main-login main-center" style="width:40rem">
             <form class="form-horizontal" th:action="@{/sign-up}" method="POST" th:object="${user}">
-
+                <div class="panel-title text-center">
+                    <h1 class="title">Create Account</h1>
+                    <hr />
+                </div>
                 <div class="form-group">
                     <label for="name" class="cols-sm-2 control-label">Name:</label>
                     <div class="cols-sm-10">
