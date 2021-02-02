@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
 <head th:replace="partials/head :: head('All Posts')">
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/5e01cb0e39.js"/>
 </head>
 <body>
 <nav th:replace="partials/navbar :: nav"></nav>
+<header th:replace="partials/header :: header('The Crafty Retired Nurse')"></header>
 <script src="/js/keys.js"></script>
 <script
         src="https://www.paypal.com/sdk/js?client-id= + paypalClientId"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
 </script>
-<header th:replace="partials/header :: header('The Crafty Retired Nurse')"></header>
+
 <div class="row">
     <div class="col-75">
         <div class="container">

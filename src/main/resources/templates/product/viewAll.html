@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/head :: head(viewAll)">
-    <meta charset="UTF-8"/>
-    <title>Home</title>
-    <div th:replace="partials/header :: header('The Crafty Retired Nurse')"></div>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head th:replace="partials/head :: head('All Posts')">
+    <meta charset="UTF-8">
 </head>
 <body>
-<div th:replace="partials/navbar :: nav"></div>
+<nav th:replace="partials/navbar :: nav"></nav>
+<header th:replace="partials/header :: header('The Crafty Retired Nurse')"></header>
 <div class="container">
 
     <h1>Here are all my products</h1>
@@ -41,5 +40,7 @@
     </form>
 </div>
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<footer th:replace="partials/partials :: footer"></footer>
+<th:block th:include="partials/scripts :: scripts"></th:block>
 </body>
 </html>
