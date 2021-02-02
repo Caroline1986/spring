@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8" />
-    <title>Sign up</title>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head th:replace="partials/head :: head(create)">
+    <meta charset="UTF-8"/>
+    <title>Create</title>
+
+
+<div th:replace="partials/navbar :: nav"></div>
+<div th:replace="partials/header :: header('The Crafty Retired Nurse')"></div>
 <link href='https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 <style>
     body, html{
@@ -141,7 +145,7 @@
         </div>
     </div>
 </div>
-
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <!--<body>-->
 <!--<h1>Create an account</h1>-->
 <!--<form th:action="@{/sign-up}" method="POST" th:object="${user}">-->
