@@ -3,20 +3,158 @@
 <head>
     <meta charset="UTF-8" />
     <title>Sign up</title>
+<link href='https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<style>
+    body, html{
+        height: 100%;
+        background-repeat: no-repeat;
+        background-color: #d3d3d3;
+        font-family: 'Lato', Verdana;
+    }
+
+    .main{
+        margin-top: 70px;
+    }
+    .form-group{
+        margin-bottom: 15px;
+    }
+
+
+
+    input,
+    input::-webkit-input-placeholder {
+        font-size: 11px;
+        padding-top: 3px;
+    }
+
+    .main-login{
+        background-color: #E1FFE1;
+        /* shadows and rounded borders */
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+
+    }
+
+    label{
+        margin-bottom: 15px;
+        font-size:18px;
+    }
+    .main-center{
+        margin-top: 30px;
+        margin: 0 auto;
+        max-width: 330px;
+        padding: 40px 40px;
+
+    }
+
+    .login-button{
+        margin-top: 5px;
+    }
+
+    .login-register{
+        font-size: 12px;
+        text-align: center;
+        text-decoration:underline;
+        color:#5CB85C;
+        font-weight:bold;
+    }
+    .iconbk{
+        background-color:#5CB85C;
+    }
+</style>
 </head>
+
 <body>
-<h1>Create an account</h1>
-<form th:action="@{/sign-up}" method="POST" th:object="${user}">
-    <label for="username">Username</label>
-    <input id="username" th:field="*{username}" />
 
-    <label for="email">Email</label>
-    <input id="email" th:field="*{email}" />
+<div class="container">
+    <div class="row main">
+        <div class="panel-heading">
+            <div class="panel-title text-center">
+                <h1 class="title">Create Account</h1>
+                <hr />
+            </div>
+        </div>
+        <div class="main-login main-center">
+            <form class="form-horizontal" th:action="@{/sign-up}" method="POST" th:object="${user}">
 
-    <label for="password">Password</label>
-    <input id="password" type="password" th:field="*{password}" />
+                <div class="form-group">
+                    <label for="name" class="cols-sm-2 control-label">Name:</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon iconbk"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name here"/>
+                        </div>
+                    </div>
+                </div>
 
-    <input value="Sign me up!" type="submit" />
-</form>
+                <div class="form-group">
+                    <label for="email" class="cols-sm-2 control-label">Email:</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon iconbk"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                            <input th:field="*{email}" type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email here"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="username" class="cols-sm-2 control-label">Username:</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon iconbk"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                            <input th:field="*{username}" type="text" class="form-control" name="username" id="username"  placeholder="Desired Username"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="cols-sm-2 control-label">Password:</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon iconbk"><i class="fa fa-lock fa-lg " aria-hidden="true"></i></span>
+                            <input th:field="*{password}" type="password" class="form-control" name="password" id="password"  placeholder="Password: Must be 8 char long"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm" class="cols-sm-2 control-label">Re-enter Password:</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon iconbk"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                            <input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm Password"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group ">
+                    <button type="button" class="btn btn-success btn-lg btn-block login-button">Create Account</button>
+                </div>
+                <div class="login-register">
+                    <a href=" ">Already have an account?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--<body>-->
+<!--<h1>Create an account</h1>-->
+<!--<form th:action="@{/sign-up}" method="POST" th:object="${user}">-->
+<!--    <label for="username">Username</label>-->
+<!--    <input id="username" th:field="*{username}" />-->
+
+<!--    <label for="email">Email</label>-->
+<!--    <input id="email" th:field="*{email}" />-->
+
+<!--    <label for="password">Password</label>-->
+<!--    <input id="password" type="password" th:field="*{password}" />-->
+
+<!--    <input value="Sign me up!" type="submit" />-->
+<!--</form>-->
 </body>
 </html>
