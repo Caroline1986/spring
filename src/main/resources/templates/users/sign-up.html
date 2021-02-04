@@ -10,16 +10,12 @@
 <link href='https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 <style>
     body, html{
-        height: 70%;
-        background-repeat: no-repeat;
-        background-color: #d3d3d3;
         font-family: 'Lato', Verdana;
     }
 
     .form-group{
         margin-bottom: 15px;
     }
-
 
     input,
     input::-webkit-input-placeholder {
@@ -28,7 +24,8 @@
     }
 
     .main-login{
-        background-color: #E1FFE1;
+        background-color: #343A40;
+        color: white;
         /* shadows and rounded borders */
         -moz-border-radius: 5px;
         -webkit-border-radius: 5px;
@@ -81,7 +78,7 @@
 
 <body>
 
-<div class="container">
+<div>
     <div class="row mainSignup">
         <div class="main-login main-center" style="width:40rem">
             <form class="form-horizontal" th:action="@{/sign-up}" method="POST" th:object="${user}">
