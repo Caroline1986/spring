@@ -2,78 +2,80 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
 <head th:replace="partials/head :: head(create)">
     <meta charset="UTF-8"/>
-    <title>Create</title>
+    <title>Sign Up</title>
+    <div th:replace="partials/navbar :: nav"></div>
+    <style>
+        body, html {
+            font-family: 'Lato', Verdana;
+        }
 
+        .form-group {
+            margin-bottom: 15px;
+        }
 
-<div th:replace="partials/navbar :: nav"></div>
-<div th:replace="partials/header :: header('The Crafty Retired Nurse')"></div>
-<link href='https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-<style>
-    body, html{
-        font-family: 'Lato', Verdana;
-    }
+        input,
+        input::-webkit-input-placeholder {
+            font-size: 11px;
+            padding-top: 3px;
+        }
 
-    .form-group{
-        margin-bottom: 15px;
-    }
+        .main-login {
 
-    input,
-    input::-webkit-input-placeholder {
-        font-size: 11px;
-        padding-top: 3px;
-    }
+            background-color: #343A40;
+            color: white;
+            /* shadows and rounded borders */
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 
-    .main-login{
-        background-color: #343A40;
-        color: white;
-        /* shadows and rounded borders */
-        -moz-border-radius: 5px;
-        -webkit-border-radius: 5px;
-        border-radius: 5px;
-        -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-        -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        }
 
-    }
+        label {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
 
-    label{
-        margin-bottom: 15px;
-        font-size:18px;
-    }
-    .main-center{
-        margin: 0 auto;
-        padding: 40px 40px;
+        .main-center {
+            margin: 1rem auto;
+            padding: 40px 40px;
 
-    }
+        }
 
-    .login-button{
-        margin-top: 5px;
-    }
+        .login-button {
+            margin-top: 5px;
+        }
 
-    .login-register{
-        font-size: 12px;
-        text-align: center;
-        text-decoration:underline;
-        color:#5CB85C;
-        font-weight:bold;
-    }
+        .login-register {
+            font-size: 12px;
+            text-align: center;
+            text-decoration: underline;
+            color: #5CB85C;
+            font-weight: bold;
+        }
 
-    .input-group-addon {
-        padding: 6px 12px;
-        font-size: 14px;
-        font-weight: 400;
-        color: #555;
-        text-align: center;
-        background-color:#5CB85C;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
+        .input-group-addon {
+            padding: 6px 12px;
+            font-size: 14px;
+            font-weight: 400;
+            color: #555;
+            text-align: center;
+            background-color: #5CB85C;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
 
-    .input-group-addon, .input-group-btn {
-        white-space: nowrap;
-        vertical-align: middle;
-    }
-</style>
+        .input-group-addon, .input-group-btn {
+            white-space: nowrap;
+            vertical-align: middle;
+        }
+
+        .mainSignup{
+            top: 15%;
+        }
+    </style>
 </head>
 
 <body>
@@ -84,14 +86,16 @@
             <form class="form-horizontal" th:action="@{/sign-up}" method="POST" th:object="${user}">
                 <div class="panel-title text-center">
                     <h1 class="title">Create Account</h1>
-                    <hr />
+                    <hr/>
                 </div>
                 <div class="form-group">
                     <label for="name" class="cols-sm-2 control-label">Name:</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
-                            <span class="input-group-addon iconbk"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name here"/>
+                            <span class="input-group-addon iconbk"><i class="fa fa-user fa"
+                                                                      aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" name="name" id="name"
+                                   placeholder="Enter your Name here"/>
                         </div>
                     </div>
                 </div>
@@ -101,7 +105,8 @@
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon iconbk"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                            <input th:field="*{email}" type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email here"/>
+                            <input th:field="*{email}" type="text" class="form-control" name="email" id="email"
+                                   placeholder="Enter your Email here"/>
                         </div>
                     </div>
                 </div>
@@ -110,8 +115,10 @@
                     <label for="username" class="cols-sm-2 control-label">Username:</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
-                            <span class="input-group-addon iconbk"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                            <input th:field="*{username}" type="text" class="form-control" name="username" id="username"  placeholder="Desired Username"/>
+                            <span class="input-group-addon iconbk"><i class="fa fa-users fa"
+                                                                      aria-hidden="true"></i></span>
+                            <input th:field="*{username}" type="text" class="form-control" name="username" id="username"
+                                   placeholder="Desired Username"/>
                         </div>
                     </div>
                 </div>
@@ -121,7 +128,8 @@
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon iconbk"><i class="fa fa-lock fa-lg " aria-hidden="true"></i></span>
-                            <input th:field="*{password}" type="password" class="form-control" name="password" id="password"  placeholder="Password: Must be 8 char long"/>
+                            <input th:field="*{password}" type="password" class="form-control" name="password"
+                                   id="password" placeholder="Password: Must be 8 char long"/>
                         </div>
                     </div>
                 </div>
@@ -130,8 +138,10 @@
                     <label for="confirm" class="cols-sm-2 control-label">Re-enter Password:</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
-                            <span class="input-group-addon iconbk"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                            <input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm Password"/>
+                            <span class="input-group-addon iconbk"><i class="fa fa-lock fa-lg"
+                                                                      aria-hidden="true"></i></span>
+                            <input type="password" class="form-control" name="confirm" id="confirm"
+                                   placeholder="Confirm Password"/>
                         </div>
                     </div>
                 </div>
@@ -140,13 +150,49 @@
                     <button type="submit" class="btn btn-success btn-lg btn-block login-button">Create Account</button>
                 </div>
                 <div class="login-register">
-                    <a th:href="@{/login}">Already have an account?</a>
+                    <a class="nav-link text-light" data-toggle="modal" data-target="#loginModal">Already have an
+                        account?</a>
+                    <!--                    <a th:href="@{/login}">Already have an account?</a>-->
                 </div>
             </form>
         </div>
     </div>
 </div>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Log In</h1>
+                <button type="button" class="close mr-0" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div th:if="${param.error}">
+                    Invalid Username and Password.
+                </div>
+                <div th:if="${param.logout}">
+                    You have been logged out.
+                </div>
+
+                <form th:action="@{/login}" method="post">
+                    <label for="username">Username</label>
+                    <input id="username" name="username" type="text"/>
+                    <label for="password">Password</label>
+                    <input id="password" name="password" type="password"/>
+
+
+                    <div class="modal-footer">
+                        <!--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                        <input type="submit" value="Log In" class="btn btn-secondary"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
 <!--<body>-->
 <!--<h1>Create an account</h1>-->
 <!--<form th:action="@{/sign-up}" method="POST" th:object="${user}">-->

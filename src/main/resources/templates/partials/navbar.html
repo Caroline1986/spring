@@ -12,17 +12,17 @@
             <a class="nav-link text-light" th:href="@{/}">Home</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-light" th:href="@{/posts}">Posts</a>
+            <a class="nav-link text-light" th:href="@{/posts}">Testimonials</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-light" th:href="@{/posts/create}">Create Posts</a>
+            <a class="nav-link text-light" th:href="@{/posts/create}">Show Us Your Mask!</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link text-light" th:href="@{/ads}">Ads</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-light" th:href="@{/ads/create}">Create Ads</a>
-        </li>
+<!--        <li class="nav-item">-->
+<!--            <a class="nav-link text-light" th:href="@{/ads}">Ads</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+<!--            <a class="nav-link text-light" th:href="@{/ads/create}">Create Ads</a>-->
+<!--        </li>-->
         <li class="nav-item">
             <a class="nav-link text-light" th:href="@{/product/create}">Create</a>
         </li>
@@ -158,11 +158,13 @@
                         <input id="username" name="username" type="text"/>
                         <label for="password">Password</label>
                         <input id="password" name="password" type="password"/>
-                        <input type="submit" value="Log In"/>
-                    </form>
+
+
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="submit" value="Log In" class="btn btn-secondary"/>
+<!--                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
