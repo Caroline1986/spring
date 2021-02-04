@@ -34,7 +34,8 @@ public class PaypalController {
     @PostMapping("/pay")
     public String payment(@ModelAttribute("order") Order order) {
         try {
-            Payment payment = service.createPayment(order.getPrice(), order.getCurrency(), order.getMethod(), order.getDescription(), "http://localhost:8080/" + CANCEL_URL, "http://localhost:8080/" + SUCCESS_URL);
+//            Payment payment = service.createPayment(order.getPrice(), order.getCurrency(), order.getMethod(), order.getDescription(), "http://localhost:8080/" + CANCEL_URL, "http://localhost:8080/" + SUCCESS_URL);
+            Payment payment = service.createPayment(order.getPrice(),"http://localhost:8080/" + CANCEL_URL, "http://localhost:8080/" + SUCCESS_URL);
             for (Links link : payment.getLinks()) {
                 if (link.getRel().equals("approval_url")) {
                     return "redirect:" + link.getHref();

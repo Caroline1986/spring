@@ -17,12 +17,12 @@
         <li class="nav-item">
             <a class="nav-link text-light" th:href="@{/posts/create}">Show Us Your Mask!</a>
         </li>
-<!--        <li class="nav-item">-->
-<!--            <a class="nav-link text-light" th:href="@{/ads}">Ads</a>-->
-<!--        </li>-->
-<!--        <li class="nav-item">-->
-<!--            <a class="nav-link text-light" th:href="@{/ads/create}">Create Ads</a>-->
-<!--        </li>-->
+        <!--        <li class="nav-item">-->
+        <!--            <a class="nav-link text-light" th:href="@{/ads}">Ads</a>-->
+        <!--        </li>-->
+        <!--        <li class="nav-item">-->
+        <!--            <a class="nav-link text-light" th:href="@{/ads/create}">Create Ads</a>-->
+        <!--        </li>-->
         <li class="nav-item">
             <a class="nav-link text-light" th:href="@{/product/create}">Create</a>
         </li>
@@ -46,7 +46,7 @@
             <a class="nav-link text-light" th:href="@{/sign-up}">Register</a>
         </li>
         <li class="nav-item link">
-            <a class="nav-link text-light"  data-toggle="modal" data-target="#loginModal">Login</a>
+            <a class="nav-link text-light" data-toggle="modal" data-target="#loginModal">Login</a>
         </li>
         <li class="nav-item">
             <form th:action="@{/logout}" th:method="post">
@@ -102,7 +102,7 @@
                 <div class="modal-body">
                     <div class="card card-body">
                         <div class="border-0">
-                            <form method="post" th:action="@{/pay}">
+                            <form method="post" th:action="@{/pay}" id="add-form">
                                 <div class="col-50">
                                     <h3>Payment</h3>
                                     <label>Accepted Cards</label>
@@ -112,21 +112,57 @@
                                         <i class="fa fa-cc-mastercard" style="color: red;"></i>
                                         <i class="fa fa-cc-discover" style="color: orange;"></i>
                                     </div>
-                                    <label for="price">Total</label>
-                                    <input type="text" id="price" name="price" value="10">
-                                    <label for="currency">Currency</label>
-                                    <input type="text" id="currency" name="currency" placeholder="Enter Currency">
-                                    <label for="method">Payment Method</label>
-                                    <input type="text" id="method" name="method" placeholder="Payment Method">
-                                    <label for="description">Payment Description</label>
-                                    <input type="text" id="description" name="description"
-                                           placeholder="Payment Description">
+                                    <h4>Cart
+                                        <i class="fa fa-shopping-cart"></i>
+                                    </h4>
+                                    <div>
+                                        <div class="mt-3">Items</div>
+                                        <ul id="items">
+                                            <!-- Items here -->
+                                        </ul>
+                                    </div>
+                                    <hr>
+                                    <p>Total<span class="price" style="color:black" id="price">
+                                        <b></b>
+                                    </span>
+                                    </p>
+                                    <div id="total">
+                                        <!-- Total here -->
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">Add Item</button>
                                     <button id="clearCart" class="btn btn-danger">Cancel</button>
+
+                                    <!--                                <input type="submit" value="Continue to Checkout" class="btn">-->
+                                    <span id="paypal-button-container">
+
+                                        <!-- Include the PayPal JavaScript SDK -->
+                                        <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
+
+                                        <script>
+                                            // Render the PayPal button into #paypal-button-container
+                                            paypal.Buttons({
+                                                // Set up the transaction
+                                                createOrder: function (data, actions) {
+                                                    return actions.order.create({
+                                                        purchase_units: [{
+                                                            amount: {
+                                                                value: '88.44'
+                                                            }
+                                                        }]
+                                                    });
+                                                },
+                                                // Finalize the transaction
+                                                onApprove: function (data, actions) {
+                                                    return actions.order.capture().then(function (details) {
+                                                        // Show a success message to the buyer
+                                                        alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                                                    });
+                                                }
+                                            }).render('#paypal-button-container');
+                                        </script>
+                                    </span>
                                 </div>
-                                <input type="submit" value="Continue to Checkout" class="btn">
                             </form>
                         </div>
                     </div>
@@ -160,10 +196,10 @@
                         <input id="password" name="password" type="password"/>
 
 
-                    <div class="modal-footer">
-                        <input type="submit" value="Log In" class="btn btn-secondary"/>
-<!--                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-                    </div>
+                        <div class="modal-footer">
+                            <input type="submit" value="Log In" class="btn btn-secondary"/>
+                            <!--                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                        </div>
                     </form>
                 </div>
             </div>

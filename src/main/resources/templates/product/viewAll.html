@@ -9,10 +9,9 @@
 <div class="container">
 
     <h1>Here are all my products</h1>
-    <form>
+    <form id="add-form">
         <div class="row rowViewAll">
             <div th:each="product : ${products}">
-
                 <div class="col">
                     <div class="card">
 
@@ -21,18 +20,16 @@
                         </div>
 
                         <div class="card-content">
-                            <span th:text="${product.name}" class="card-title activator grey-text text-darken-4">Title<i
-                                    class="material-icons right">more info</i></span>
-                            <p><a th:href="'/product/' + ${product.id}">Link</a></p>
+                            <p><a th:href="'/product/' + ${product.id}">edit</a></p>
                         </div>
 
                         <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4">Title<i
-                                    class="material-icons right">close</i></span>
+                            <span class="card-title grey-text text-darken-4">Description</span>
                             <p th:text="${product.description}"></p>
+                            <input id="name" type="hidden" th:text="${product.id}"/>
                         </div>
-                        <button type="submit" class="btn btn-primary">Add Item</button>
-                        <button id="clearCart" class="btn btn-danger">Cancel</button>
+                            <input id="price" type="hidden" th:text="${product.price}">
+                        <button id="add" type="submit" class="btn btn-primary">Add Item</button>
                     </div>
                 </div>
             </div>

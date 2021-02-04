@@ -19,25 +19,25 @@ public class PaypalService {
 
     public Payment createPayment(
             Double total,
-            String currency,
-            String method,
-            String description,
+//            String currency,
+//            String method,
+//            String description,
             String cancelUrl,
             String successUrl) throws PayPalRESTException{
         Amount amount = new Amount();
-        amount.setCurrency(currency);
+//        amount.setCurrency(currency);
         total = new BigDecimal(total).setScale(2, RoundingMode.HALF_UP).doubleValue();
         amount.setTotal(String.format("%.2f", total));
 
         Transaction transaction = new Transaction();
-        transaction.setDescription(description);
+//        transaction.setDescription(description);
         transaction.setAmount(amount);
 
         List<Transaction> transactions = new ArrayList<>();
         transactions.add(transaction);
 
         Payer payer = new Payer();
-        payer.setPaymentMethod(method.toString());
+//        payer.setPaymentMethod(method.toString());
 
 
         Payment payment = new Payment();
