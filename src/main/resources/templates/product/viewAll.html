@@ -26,9 +26,9 @@
                         <div class="card-reveal">
                             <span class="card-title grey-text text-darken-4">Description</span>
                             <p th:text="${product.description}"></p>
-                            <input id="name" type="hidden" th:text="${product.id}"/>
+                            <input id="name" type="hidden" th:value="${product.id}" th:text="${product.id}"/>
                         </div>
-                            <input id="price" type="hidden" th:text="${product.price}">
+                            <input id="price" type="hidden" th:value="${product.price}" th:text="${product.price}">
                         <button id="add" type="submit" class="btn btn-primary">Add Item</button>
                     </div>
                 </div>

@@ -14,6 +14,10 @@
     <p class="center-align" th:text="${product.description}" ></p>
     <p class="center-align" >$<span th:text="${product.price}"></span></p>
     <img class="center-align" width="200px" height="auto" th:src="${product.img}" alt="img">
+    <ul id="items">
+        <!-- Items here -->
+        <p class="center-align" th:text="${product.description}" ></p>
+    </ul>
     <a class="center-align" th:href="'/product/'+ ${product.id +'/edit'}">Edit</a>
     <a class="center-align" th:href="'/product/'+ ${product.id +'/delete'}">Delete</a>
 </div>
