@@ -1,19 +1,18 @@
 "use strict";
 
 document.querySelector('body').onclick = (e) => {
-    console.log('---------------------------------')
-    console.log(e.target)
+
 }
 
 const addForm = document.getElementById('add-form')
-const inputName = document.getElementById('name')
-const inputPrice = document.getElementById('price')
+const inputName = document.getElementsByClassName('name')
+const inputPrice = document.getElementsByClassName('price')
 const itemsList = document.getElementById('items')
-const divTotal = document.getElementById('total')
+const divTotal = document.getElementsByClassName('total')
 
 const cart = []
-
-addForm.onsubmit = function(e) {
+window.onload = function (){
+addForm.onsubmit = function (e) {
     e.preventDefault()
     const name = inputName.value
     const price = inputPrice.value
@@ -22,19 +21,18 @@ addForm.onsubmit = function(e) {
     showCart()
 }
 
-itemsList.onclick = function(e) {
+itemsList.onclick = function (e) {
     console.log(e.target)
     if (e.target && e.target.classList.contains('remove')) {
         console.log(e.target.dataset.name)
         removeFromCart(e.target.dataset.name)
     } else if (e.target && e.target.classList.contains('add-one')) {
         addToCart(e.target.dataset.name)
-    } else if (e.target && e.target.classList.contains('remove-one')) {
+    } else (e.target && e.target.classList.contains('remove-one'))
         removeFromCart(e.target.dataset.name, 1)
-    }
 }
 
-itemsList.onchange = function(e) {
+itemsList.onchange = function (e) {
     if (e.target && e.target.classList.contains('update')) {
         const qty = parseInt(e.target.value)
         const name = e.target.dataset.name
@@ -51,7 +49,7 @@ function addToCart(name, price) {
             return true
         }
     }
-    cart.push({ name, price, qty: 1})
+    cart.push({name, price, qty: 1})
     showCart()
 }
 
@@ -117,6 +115,6 @@ function updateCart(name, qty) {
 showCart()
 
 getTotal()
-
+};
 
 

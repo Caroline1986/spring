@@ -9,7 +9,7 @@
 <div class="container">
 
     <h1>Here are all my products</h1>
-    <form id="add-form">
+    <form class="add-form">
         <div class="row rowViewAll">
             <div th:each="product : ${products}">
                 <div class="col">
@@ -26,10 +26,10 @@
                         <div class="card-reveal">
                             <span class="card-title grey-text text-darken-4">Description</span>
                             <p th:text="${product.description}"></p>
-                            <input id="name" type="hidden" th:value="${product.id}" th:text="${product.id}"/>
+                            <input class="name" type="hidden" th:value="${product.id}" th:text="${product.id}"/>
                         </div>
-                            <input id="price" type="hidden" th:value="${product.price}" th:text="${product.price}">
-                        <button id="add" type="submit" class="btn btn-primary">Add Item</button>
+                        <input class="price" type="hidden" th:value="${product.price}" th:text="${product.price}">
+                        <button  type="submit" class="btn btn-primary add">Add Item</button>
                     </div>
                 </div>
             </div>
